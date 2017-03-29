@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/grey"
+              android:orientation="vertical"
+              tools:ignore="ExtraText">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:src="@drawable/ic_auriculares_yellow"/>
+
+    <EditText
+        android:id="@+id/edusuario"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:contentDescription="Nombre"
+        android:ems="10"
+        android:hint="Nombre"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:textColor="@color/colorPrimaryDark"
+        tools:ignore="HardcodedText"
+        tools:text="Nombre"/>
+
+    <EditText
+        android:id="@+id/edpassword"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:contentDescription="@string/password_reg"
+        android:ems="10"
+        android:hint="@string/password_hint"
+        android:inputType="textPassword"
+        android:text="@string/password"
+        android:textColor="@color/colorPrimaryDark"
+        tools:text="Password"/>
+
+    <EditText
+        android:id="@+id/edcorreo"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:contentDescription="E-mail"
+        android:ems="10"
+        android:hint="E-mail"
+        android:inputType="textEmailAddress"
+        android:text="@string/email"
+        android:textColor="@color/colorPrimaryDark"
+        tools:text="E-mail"/>
+
+    <Button
+        android:id="@+id/btn_regis"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="340dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginTop="@dimen/margin_btn"
+        android:background="@color/audio_books"
+        android:elevation="24dp"
+        android:text="@string/registar"/>
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="340dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:background="@color/audio_books"
+        android:elevation="24dp"
+        android:onClick="Volver"
+        android:text="@string/volver"/>
+</LinearLayout>

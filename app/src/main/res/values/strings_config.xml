@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Nombre Actividad Ajustes-->
+    <!--<string name="title_activity_settings">Configuración</string>-->
+
+    <!-- Titulos de Grupos-->
+    <string name="pref_conn">DATOS CONEXIÓN</string>
+    <string name="pref_user">DATOS USUARIO</string>
+    <string name="pref_environment">DATOS DE ENTORNO</string>
+
+    <!-- GENERALES -->
+    <!-- Preferenciaa Conexión -->
+    <string name="server">SERVIDOR</string>
+    <string name="server_resumen">Dirección Webservice</string>
+
+    <!-- Preferenciaa Usuario -->
+    <string name="user">USUARIO</string>
+    <string name="user_resumen">Tu nombre de usuario</string>
+    <string name="pass">CONTRASEÑA</string>
+    <string name="pass_resumen">Tu contraseña</string>
+    <string name="mail">EMAIL</string>
+    <string name="mail_resumen">Tu e-mail</string>
+    <string name="auto_login">AUTO LOGIN</string>
+    <string name="auto_login_resumen">Validación automática</string>
+    <string name="reg_manual">REGISTRO MANUAL</string>
+    <string name="reg_manual_resumen">Activar datos de usuario</string>
+
+    <!-- Preferencias Entorno -->
+    <string name="sd_card">ACTIVAR SD-CARD</string>
+    <string name="sd_card_resumen">Alamcenamiento para datos externos</string>
+    <string name="res_environment">REINICIAR ENTORNO</string>
+    <string name="res_environment_resumen">Borrar datos de entorno</string>
+</resources>

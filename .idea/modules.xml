@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/audioBooks.iml" filepath="$PROJECT_DIR$/audioBooks.iml" />
+      <module fileurl="file://$PROJECT_DIR$/audioBooks-a957483921ca75bc8f411005cfcb17239a4f6f24.iml" filepath="$PROJECT_DIR$/audioBooks-a957483921ca75bc8f411005cfcb17239a4f6f24.iml" />
+    </modules>
+  </component>
+</project>

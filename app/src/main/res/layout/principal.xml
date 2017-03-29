@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey"
+    android:baselineAligned="false"
+    android:gravity="center"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="es.hol.audiolibros.Principal"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/audiobooks"
+        android:textSize="32sp"
+        android:textColor="@color/audio_books"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/imgbtn1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="favoritos"
+            android:src="@drawable/ic_favorito_yellow"
+            android:text="@string/favoritos"/>
+
+        <ImageButton
+            android:id="@+id/imgbtn2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="catalogo"
+            android:src="@drawable/ic_catalogo_yellow"
+            android:text="@string/catalogo"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/imgbtn3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="registro"
+            android:src="@drawable/ic_registrarse_yellow"
+            android:text="@string/registro"/>
+
+        <ImageButton
+            android:id="@+id/imgbtn4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="config"
+            android:src="@drawable/ic_configurar_yellow"
+            android:text="@string/configurar"/>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/CtxGvOpc0"
+        android:title="@string/detalles"/>
+    <item
+        android:id="@+id/CtxGvOpc1"
+        android:title="@string/eliminar"/>
+    <item
+        android:id="@+id/CtxGvOpc2"
+        android:title="@string/reproducir"/>
+    <item
+        android:id="@+id/CtxGvOpc3"
+        android:title="@string/salir"/>
+
+</menu>

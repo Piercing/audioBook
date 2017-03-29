@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- PREFERENCIAS GENERALES -->
+
+    <PreferenceCategory
+        android:key="pref_conn"
+        android:title="@string/pref_conn">
+        <!-- Server -->
+        <EditTextPreference
+            android:key="server"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:summary="@string/server_resumen"
+            android:title="@string/server"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="pref_user"
+        android:title="@string/pref_user">
+
+        <!-- Usuario -->
+        <EditTextPreference
+            android:key="user"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:summary="@string/user_resumen"
+            android:title="@string/user"/>
+
+        <!-- Password -->
+        <EditTextPreference
+            android:inputType="textWebPassword"
+            android:key="pass"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:summary="@string/pass_resumen"
+            android:title="@string/pass"/>
+
+        <!-- Email -->
+        <EditTextPreference
+            android:key="mail"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:summary="@string/mail_resumen"
+            android:title="@string/mail"/>
+
+        <!-- Auto Login -->
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="autologin"
+            android:summary="@string/auto_login_resumen"
+            android:title="@string/auto_login"/>
+
+        <!-- Registro Manual -->
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="reg_man"
+            android:summary="@string/reg_manual_resumen"
+            android:title="@string/reg_manual"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="pref_environment"
+        android:title="@string/pref_environment">
+        <!-- Acitvar SD-CARD -->
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="sdcard"
+            android:summary="@string/sd_card_resumen"
+            android:title="@string/sd_card"/>
+
+        <!-- Reiniciar Entorno -->
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="entorno"
+            android:summary="@string/res_environment_resumen"
+            android:title="@string/res_environment"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

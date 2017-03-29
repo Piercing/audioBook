@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/Ctx_autor"
+        android:icon="@drawable/ic_filter"
+        android:title="@string/autor"/>
+    <item
+        android:id="@+id/Ctx_titulo"
+        android:icon="@drawable/ic_filter"
+        android:title="@string/txt_titulo"/>
+    <item
+        android:id="@+id/Ctx_tema"
+        android:icon="@drawable/ic_filter"
+        android:title="@string/tema"/>
+    <item
+        android:id="@+id/Ctx_qfiltro"
+        android:icon="@drawable/ic_filter"
+        android:title="@string/quitar_filtro"/>
+    <item
+        android:id="@+id/Ctx_salir"
+        android:icon="@drawable/ic_filter"
+        android:title="@string/salir"/>
+
+</menu>

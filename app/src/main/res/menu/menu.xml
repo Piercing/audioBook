@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context="com.example.android.es.hol.audiolibros">
+
+    <item
+        android:id="@+id/favoritos"
+        android:icon="@drawable/ic_favorito_yellow"
+        android:orderInCategory="100"
+        android:title="@string/favoritos"
+        app:showAsAction="never|withText"/>
+
+    <item
+        android:id="@+id/registro"
+        android:icon="@drawable/ic_registrarse_yellow"
+        android:orderInCategory="100"
+        android:title="@string/registro"
+        app:showAsAction="never|withText"/>
+    <item
+        android:id="@+id/catalogo"
+        android:icon="@drawable/ic_catalogo_yellow"
+        android:orderInCategory="100"
+        android:title="@string/catalogo"
+        app:showAsAction="never|withText"/>
+    <item
+        android:id="@+id/acercaDe"
+        android:icon="@drawable/aviso"
+        android:orderInCategory="100"
+        android:title="@string/acercaDe"
+        app:showAsAction="never|withText"/>
+    <item
+        android:id="@+id/config"
+        android:icon="@drawable/ic_configurar_yellow"
+        android:orderInCategory="100"
+        android:title="@string/configuracion"
+        app:showAsAction="never|withText"/>
+    <item
+        android:id="@+id/salir"
+        android:icon="@drawable/fail"
+        android:orderInCategory="100"
+        android:title="@string/salir"
+        app:showAsAction="never|withText"/>
+</menu>
+
+
