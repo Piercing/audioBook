@@ -37,19 +37,11 @@ import java.io.IOException;
 public class MusicPlayerActivity extends Activity implements OnPreparedListener, OnErrorListener,
     OnCompletionListener, SeekBar.OnSeekBarChangeListener {
 
-
-  // declaración de variables.
-  private ImageButton btnVolbajar;
-  private ImageButton btnBackward;
   private ImageButton btnPlay;
-  private ImageButton btnForward;
-  private ImageButton btnVolsubir;
-  private ImageButton btnSalir;
   private SeekBar songProgressBar;
   private TextView songTitleLabel;
   private TextView songCurrentDurationLabel;
   private TextView songTotalDurationLabel;
-  private ImageView img_player;
   private ProgressDialog pDialog;
   private AudioManager audioManager = null;
 
@@ -84,27 +76,25 @@ public class MusicPlayerActivity extends Activity implements OnPreparedListener,
     // Referenciar objetos View
     // componenetes del reproductor
     btnPlay = ( ImageButton ) findViewById( R.id.btnPlay );
-    btnForward = ( ImageButton ) findViewById( R.id.btnForward );
-    btnBackward = ( ImageButton ) findViewById( R.id.btnBackward );
-    btnVolsubir = ( ImageButton ) findViewById( R.id.btnVolsubir );
-    btnVolbajar = ( ImageButton ) findViewById( R.id.btnVolbajar );
-    btnSalir = ( ImageButton ) findViewById( R.id.btnSalir );
+    ImageButton btnForward = ( ImageButton ) findViewById( R.id.btnForward );
+    ImageButton btnBackward = ( ImageButton ) findViewById( R.id.btnBackward );
+    ImageButton btnVolsubir = ( ImageButton ) findViewById( R.id.btnVolsubir );
+    ImageButton btnVolbajar = ( ImageButton ) findViewById( R.id.btnVolbajar );
+    ImageButton btnSalir = ( ImageButton ) findViewById( R.id.btnSalir );
     songProgressBar = ( SeekBar ) findViewById( R.id.songProgressBar );
     songTitleLabel = ( TextView ) findViewById( R.id.songTitle );
     songCurrentDurationLabel = ( TextView ) findViewById( R.id.songCurrentDurationLabel );
     songTotalDurationLabel = ( TextView ) findViewById( R.id.songTotalDurationLabel );
-    img_player = ( ImageView ) findViewById( R.id.player_img );
+    ImageView img_player = ( ImageView ) findViewById( R.id.player_img );
 
-    //Obtener el manejador del servicio de audio.
+    // Obtener el manejador del servicio de audio.
     audioManager = ( AudioManager ) getSystemService( Context.AUDIO_SERVICE );
 
     // Mediaplayer
     mp = new MediaPlayer( );
-
-    //mp = new MediaPlayer();
     mHandler = new Handler( );
 
-// songManager = new SongsManager();
+    // songManager = new SongsManager();
     utils = new Utils( );
 
 
@@ -274,8 +264,8 @@ public class MusicPlayerActivity extends Activity implements OnPreparedListener,
         } else { // es un favorito
 
           // Creamos un objeto de la clase AlertDialog a través de la clase Builder
-// Configuramos el mensaje y título del diálogo
-// Evitamos que el diálogo sea saltado por cualquier medio distinto a presionar // alguno de los dos botones
+          // Configuramos el mensaje y título del diálogo
+          // Evitamos que el diálogo sea saltado por cualquier medio distinto a presionar // alguno de los dos botones
           // Llamamos al método setPositiveButton y setNegativeButton indicando el texto a // mostrar en el botón y la clase
           // anónima que capturará el evento clic del botón
 
@@ -524,11 +514,12 @@ public class MusicPlayerActivity extends Activity implements OnPreparedListener,
 
       // Muestra la duracion total
       songTotalDurationLabel.setText( "" + utils.milliSecondsToTimer( totalDuration ) );
+
       // Muestra la posicion actual
       songCurrentDurationLabel.setText( "" + utils.milliSecondsToTimer( currentDuration ) );
 
       // Actualiza barra de progreso
-      int progress = ( int ) ( utils.getProgressPercentage( currentDuration, totalDuration ) );
+      int progress = utils.getProgressPercentage( currentDuration, totalDuration );
       //Log.d("Progress", ""+progress);
       songProgressBar.setProgress( progress );
 

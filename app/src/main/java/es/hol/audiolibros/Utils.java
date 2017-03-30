@@ -10,8 +10,10 @@ import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.Gravity;
 import android.widget.Toast;
@@ -40,6 +42,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.UnknownHostException;
@@ -313,6 +316,12 @@ public class Utils {
     toast.show( );
   }
 
+  private static void disableConnectionReuseIfNecessary( ) {
+    // HTTP connection reuse which was buggy pre-froyo
+    if ( Integer.parseInt( Build.VERSION.SDK ) < Build.VERSION_CODES.FROYO ) {
+      System.setProperty( "http.keepAlive", "false" );
+    }
+  }
 
  /*
  * Comprueba que existe un recurso
@@ -330,6 +339,9 @@ public class Utils {
     int totalSize = 0;
 
     try {
+
+      disableConnectionReuseIfNecessary( );
+      System.setProperty( "http.keepAlive", "false" );
 
       //desactivar redirecciones
       HttpURLConnection.setFollowRedirects( false );
@@ -351,13 +363,13 @@ public class Utils {
 
     } catch ( UnknownHostException uhe ) {
       // Handle exceptions as necessary
-      Utils.mensaje( context, "Error: \n" + uhe );
+      //Utils.mensaje( context, "Error: \n" + uhe );
     } catch ( FileNotFoundException fnfe ) {
       // Handle exceptions as necessary
       Utils.mensaje( context, "No Existe: " + url );
     } catch ( Exception e ) {
       // Handle exceptions as necessary
-      Utils.mensaje( context, "Error: \n" + e );
+      //Utils.mensaje( context, "Error: \n" + e );
     }
 
     Log.i( "CompUrl", "Code: " + responseCode + " Size: " + totalSize );
@@ -400,7 +412,7 @@ public class Utils {
   // abrir una conexion HTTP y devolver un objeto InputStream
   private static InputStream OpenHttpConnection( String urlString ) throws IOException {
     InputStream in = null;
-    int response = -1;
+    //int response = -1;
 
     URL url = new URL( urlString );
     URLConnection conn = url.openConnection( );
@@ -409,16 +421,31 @@ public class Utils {
       throw new IOException( "Not an HTTP connection" );
 
     try {
-      HttpURLConnection httpConn = ( HttpURLConnection ) conn;
-      httpConn.setAllowUserInteraction( false );
-      httpConn.setInstanceFollowRedirects( true );
-      httpConn.setRequestMethod( "GET" );
-      httpConn.connect( );
 
-      response = httpConn.getResponseCode( );
+      // To keep this example simple, we allow network access in the user interface thread
+      StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder( ).permitAll( ).build( );
+      StrictMode.setThreadPolicy( policy );
+
+      HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+     // HttpURLConnection httpConn = ( HttpURLConnection ) conn;
+
+      connection.setAllowUserInteraction( false );
+      connection.setInstanceFollowRedirects( true );
+      String request = connection.getRequestMethod( );
+      connection.setRequestMethod( request );
+      connection.setDoInput( true );
+      connection.setDoOutput( false );
+      connection.connect( );
+
+      int response = connection.getResponseCode( );
       if ( response == HttpURLConnection.HTTP_OK ) {
-        in = httpConn.getInputStream( );
+        in = connection.getInputStream( );
       }
+    } catch ( MalformedURLException e ) {
+      Log.d( "Exception: ", "MalformedURLException" );
+    } catch ( IOException e ) {
+      Log.d( "Exception: ", "IOException" );
     } catch ( Exception ex ) {
       throw new IOException( "Error connecting" );
     }
@@ -526,9 +553,7 @@ public class Utils {
             inputStream = entity.getContent( );
 
             // decoding stream data back into image Bitmap that nandroid understands
-            final Bitmap bitmap =
-
-                BitmapFactory.decodeStream( inputStream );
+            final Bitmap bitmap = BitmapFactory.decodeStream( inputStream );
             return bitmap;
           } finally {
             if ( inputStream != null ) {

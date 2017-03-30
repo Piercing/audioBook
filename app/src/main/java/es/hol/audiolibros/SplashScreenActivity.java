@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Window;
 
 public class SplashScreenActivity extends Activity {
 
@@ -25,7 +26,7 @@ public class SplashScreenActivity extends Activity {
         setRequestedOrientation( ActivityInfo.SCREEN_ORIENTATION_PORTRAIT );
 
         // Ocultar barra de título.
-        //requestWindowFeature( Window.FEATURE_NO_TITLE );
+        requestWindowFeature( Window.FEATURE_NO_TITLE );
 
         setContentView( R.layout.splash_screen );
 

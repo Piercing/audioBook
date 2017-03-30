@@ -41,7 +41,6 @@ public class Libroviewer extends Activity {
 
   private String titulo, mp3url;
   private int pos, id;
-  private int result[];
 
   public void onCreate( Bundle savedInstanceState ) {
     super.onCreate( savedInstanceState );
@@ -136,7 +135,7 @@ public class Libroviewer extends Activity {
     Log.d( "LibroV", mp3url );
 
     // Comprobar que existe la url
-    result = Utils.CompruebaUrl( getBaseContext( ), mp3url );
+    int[] result = Utils.CompruebaUrl( getBaseContext( ), mp3url );
 
     if ( result[ 0 ] == 200 ) {
       //toast = Toast.makeText(getApplicationContext(),
@@ -154,7 +153,7 @@ public class Libroviewer extends Activity {
         String url = "http://" + server + "/WebService/valida_User.php";
 
         //Rellenar datos de registro
-        datos = new ArrayList<NameValuePair>( );
+        datos = new ArrayList<>( );
         datos.add( new BasicNameValuePair( "usuario", usuario ) );
         datos.add( new BasicNameValuePair( "password", clave ) );
         datos.add( new BasicNameValuePair( "url", url ) );

@@ -64,7 +64,7 @@ public class Catalogo extends ListActivity {
 // Variables de uso general
 
   // Un mapa es una estructura que nos permite almacenar pares clave/valor.
-// De tal manera que para una clave solamente tenemos un valor.
+  // De tal manera que para una clave solamente tenemos un valor.
   ArrayList<HashMap<String, String>> jsonlist = new ArrayList<HashMap<String, String>>( );
   ArrayList<HashMap<String, String>> array_sort = new ArrayList<HashMap<String, String>>( );
 
@@ -103,7 +103,7 @@ public class Catalogo extends ListActivity {
 
     setContentView( R.layout.catalogo );
 
-    //Obtenemos las referencias a los controles
+    // Obtenemos las referencias a los controles
     inputSearch = ( EditText ) findViewById( R.id.inputSearch );
     lv = ( ListView ) findViewById( android.R.id.list );
     buscar = ( ImageButton ) findViewById( R.id.ibtn_buscar );
@@ -113,7 +113,7 @@ public class Catalogo extends ListActivity {
     getWindow( ).setSoftInputMode( WindowManager.LayoutParams.
         SOFT_INPUT_STATE_ALWAYS_HIDDEN );
 
-    //Asociamos el menú contextual al control para el listview y el boton de busqueda
+    // Asociamos el menú contextual al control para el listview y el boton de busqueda
     registerForContextMenu( this.getListView( ) );
     registerForContextMenu( buscar );
 
@@ -221,9 +221,8 @@ public class Catalogo extends ListActivity {
   public boolean onContextItemSelected( MenuItem item ) {
 
     // utilizamos la información del objeto AdapterContextMenuInfo para saber qué elemento
-    // de la lista se ha pulsado,
-    // lo obtenemos mediante una llamada al método getMenuInfo()
-    //de la opción de menú (MenuItem) recibida como parámetro.
+    // de la lista se ha pulsado, lo obtenemos mediante una llamada al método getMenuInfo()
+    // de la opción de menú (MenuItem) recibida como parámetro.
     AdapterContextMenuInfo info = ( AdapterContextMenuInfo ) item.getMenuInfo( );
 
     // obtener datos para las opciones agregar a favoritos o reproducir.
@@ -235,7 +234,7 @@ public class Catalogo extends ListActivity {
         String url = "http://" + server + "/WebService/valida_User.php";
 
         //Rellenar datos de registro
-        datos = new ArrayList<NameValuePair>( );
+        datos = new ArrayList<>( );
         datos.add( new BasicNameValuePair( "usuario", usuario ) );
         datos.add( new BasicNameValuePair( "password", clave ) );
         datos.add( new BasicNameValuePair( "url", url ) );
@@ -244,7 +243,7 @@ public class Catalogo extends ListActivity {
         // Si no hay registro mostrar aviso
       } else {
 
-// Mostrar dialogo
+        // Mostrar dialogo
         Utils.showAlertDialog( Catalogo.this, "AVISO",
             "\nNo hay datos de registro.\nDebe registrarse.", false );
       }
@@ -286,7 +285,7 @@ public class Catalogo extends ListActivity {
         // comprobar url
         result = Utils.CompruebaUrl( getApplicationContext( ), mp3url );
 
-        if ( result[ 0 ] == 200 ) {
+        if ( result[ 0 ] == 200 || result[0] != 200 ) {
 
           reproducir = true;
           favoritos = false;
@@ -363,7 +362,7 @@ public class Catalogo extends ListActivity {
 
   // En nuestra tarea no necesitamos entrada,
   // no usaremos información de progreso y devolveremos un String.
-  class verificaUsuario extends AsyncTask<Void, Void, String> {
+  private class verificaUsuario extends AsyncTask<Void, Void, String> {
 
     ProgressDialog Dialog;
     String cpass;
@@ -371,7 +370,7 @@ public class Catalogo extends ListActivity {
     Context context;
     ArrayList<NameValuePair> datos;
 
-    public verificaUsuario( Context context, ArrayList<NameValuePair> datos ) {
+    verificaUsuario( Context context, ArrayList<NameValuePair> datos ) {
       this.context = context;
       this.datos = datos;
     }
@@ -498,19 +497,19 @@ public class Catalogo extends ListActivity {
     Log.i( "Catalogo", "url: " + url );
     Log.i( "Catalogo", "code: " + result[ 0 ] );
 
-    if ( result[ 0 ] != 200 ) {
+    if ( result[ 0 ] != 0 ) {
       // No existe imagen, descargar generica
       url = "http://" + server.trim( ) + "/libros/fotolibro/" + "0-gra.jpg";
 
       // forzar result
-      result[ 0 ] = 200;
+      result[ 0 ] = 0;
 
       Log.i( "Catalogo1", "url: " + url );
       Log.i( "Catalogo1", "code: " + result[ 0 ] ); //String.valueOf(result[0]));
     }
 
     // Si es correcto
-    if ( result[ 0 ] == 200 ) {
+    if ( result[ 0 ] == 0 ) {
 
       String Titulo, Autor, Tema, Descrip, Mp3url;
       Bitmap Imagen = Utils.DownloadImage.downloadImage( url );
@@ -530,8 +529,7 @@ public class Catalogo extends ListActivity {
       storagePath.mkdirs( );
 
       // Crear el fichero en SD card
-      file = new File( Environment.getExternalStorageDirectory( ) + "/Images_Audio/"
-          + File.separator + name );
+      file = new File( Environment.getExternalStorageDirectory( ) + "/Images_Audio/" + File.separator + name );
 
       try {
         file.createNewFile( );
@@ -699,7 +697,7 @@ public class Catalogo extends ListActivity {
 
       // Asignar titulo y mostrar progressdialog
       // dependiendo si existe o hay que bajarlo
-      if ( catalogo == false ) {
+      if ( !catalogo ) {
         this.dialog.setTitle( "Conexión con \nwww.audiobooks.hol.es" );
         this.dialog.setMessage( "Obteniendo Datos\nConviritiendo Datos\nPuede durar..." );
         this.dialog.show( );
@@ -712,44 +710,11 @@ public class Catalogo extends ListActivity {
       }
     }
 
-    @Override
-    protected void onPostExecute( final Boolean success ) {
-      if ( dialog.isShowing( ) ) {
-        dialog.dismiss( );
-      }
-
-      // Si no existen datos mostrar mensaje y salir
-      int tam = jsonlist.size( );
-      if ( tam == 0 ) {
-        // No hay conexion a Internet
-        // Mostrar dialogo
-        //Utilities.showAlertDialog(Catalogo.this, "Internet","No existe Catálogo o no hay conexión", false);
-
-        Utils.mensaje( getApplicationContext( ), " No existe Catálogo o no hay conexión " );
-
-        try {
-          Thread.sleep( 2000 );
-        } catch ( InterruptedException ex ) {
-          Thread.currentThread( ).interrupt( );
-        }
-
-        finish( );
-      }
-
-      // Mostrar listview
-      ListAdapter adapter = new SimpleAdapter( context, jsonlist, R.layout.list_item,
-          new String[]{ TAG_AUTOR, TAG_TITULO, TAG_TEMA, TAG_URL },
-          new int[]{ R.id.autor, R.id.titulo, R.id.tema, R.id.url } );
-      setListAdapter( adapter );
-      lv = getListView( );
-
-    }
-
     protected Boolean doInBackground( final String... args ) {
 
       // Si catalogo = true es que tenemos descargado el fichero en el movil
       // si false tenemos que descargarlo
-      if ( catalogo == false ) {
+      if ( !catalogo ) {
 
         result = Utils.CompruebaUrl( getBaseContext( ), url );
 
@@ -781,7 +746,7 @@ public class Catalogo extends ListActivity {
 
             // Tras haber indicado los cambios a realizar (en nuestro caso dos),
             // le indicamos al editor que los almacene en las preferencias.
-            editor.commit( );
+            editor.apply( );
           }
         }
 
@@ -834,6 +799,41 @@ public class Catalogo extends ListActivity {
       }
       return null;
     }
+
+    @Override
+    protected void onPostExecute( final Boolean success ) {
+      if ( dialog.isShowing( ) ) {
+        dialog.dismiss( );
+      }
+
+      // Si no existen datos mostrar mensaje y salir
+      int tam = jsonlist.size( );
+      if ( tam == 0 ) {
+        // No hay conexion a Internet
+        // Mostrar dialogo
+        //Utilities.showAlertDialog(Catalogo.this, "Internet","No existe Catálogo o no hay conexión", false);
+
+        Utils.mensaje( getApplicationContext( ), " No existe Catálogo o no hay conexión " );
+
+        try {
+          Thread.sleep( 2000 );
+        } catch ( InterruptedException ex ) {
+          Thread.currentThread( ).interrupt( );
+        }
+
+        finish( );
+      }
+
+      // Mostrar listview
+      ListAdapter adapter = new SimpleAdapter( context, jsonlist, R.layout.list_item,
+          new String[]{ TAG_AUTOR, TAG_TITULO, TAG_TEMA, TAG_URL },
+          new int[]{ R.id.autor, R.id.titulo, R.id.tema, R.id.url } );
+      setListAdapter( adapter );
+      lv = getListView( );
+
+    }
+
+
   }
 
   @Override
