@@ -17,66 +17,86 @@
 
     <EditText
         android:id="@+id/edusuario"
-        android:layout_width="340dp"
-        android:layout_height="wrap_content"
+        android:layout_width="320dp"
+        android:layout_height="48dp"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:contentDescription="Nombre"
         android:ems="10"
         android:hint="Nombre"
         android:inputType="textPersonName"
         android:text="Name"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/black"
+        android:textSize="17dp"
         tools:ignore="HardcodedText"
-        tools:text="Nombre"/>
+        tools:text="Nombre"
+        android:background="@drawable/rounded_corner2"/>
 
     <EditText
         android:id="@+id/edpassword"
-        android:layout_width="340dp"
-        android:layout_height="wrap_content"
+        android:layout_width="320dp"
+        android:layout_height="48dp"
         android:layout_gravity="center"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:textSize="17dp"
         android:contentDescription="@string/password_reg"
         android:ems="10"
         android:hint="@string/password_hint"
         android:inputType="textPassword"
         android:text="@string/password"
-        android:textColor="@color/colorPrimaryDark"
-        tools:text="Password"/>
+        android:textColor="@color/black"
+        tools:text="Password"
+        android:background="@drawable/rounded_corner2"
+        />
 
     <EditText
         android:id="@+id/edcorreo"
-        android:layout_width="340dp"
-        android:layout_height="wrap_content"
+        android:layout_width="320dp"
+        android:layout_height="48dp"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:contentDescription="E-mail"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:contentDescription="@string/e_mail_descrip"
         android:ems="10"
-        android:hint="E-mail"
+        android:textSize="17dp"
+        android:hint="@string/e_mail"
         android:inputType="textEmailAddress"
         android:text="@string/email"
-        android:textColor="@color/colorPrimaryDark"
-        tools:text="E-mail"/>
+        android:textColor="@color/black"
+        tools:text="E-mail"
+        android:background="@drawable/rounded_corner2"/>
 
     <Button
         android:id="@+id/btn_regis"
         style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="340dp"
+        android:layout_width="320dp"
         android:layout_height="48dp"
         android:layout_gravity="center"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:layout_marginTop="@dimen/margin_btn"
-        android:background="@color/audio_books"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/rounded_corner3"
         android:elevation="24dp"
+        android:textSize="@dimen/activity_vertical_margin"
         android:text="@string/registar"/>
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="340dp"
+        android:layout_width="320dp"
         android:layout_height="48dp"
         android:layout_gravity="center"
-        android:background="@color/audio_books"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/rounded_corner3"
+        android:textSize="@dimen/activity_vertical_margin"
         android:elevation="24dp"
         android:onClick="Volver"
-        android:text="@string/volver"/>
+        android:text="@string/volver"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"/>
 </LinearLayout>
