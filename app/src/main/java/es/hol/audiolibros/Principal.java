@@ -295,7 +295,7 @@ public class Principal extends AppCompatActivity {
         String clave = prefs.getString( "pass", "" );
 
         // Ruta de la función del Web Service.
-        String url = "http://" + server + "/valida_User.php";
+        String url = "http://" + server + "/WebService/valida_User.php";
 
         // Rellenar datos de registro.
         //datos = new String[] {usuario.trim(), cpass};
@@ -541,13 +541,13 @@ public class Principal extends AppCompatActivity {
       Log.i( "onPostExecute=", "resp: " + resp );
 
       // Validamos el resultado obtenido.
-      if ( resp.trim( ).contains( "0" ) ) {
+      if ( !resp.trim( ).contains( "0" ) ) {
 
         // Mostrar mensaje.
         Log.i( "verifica0 ", "invalido" );
         Utils.mensaje( context, " Usuario o contaseña incorrectos " );
 
-      } else if ( resp.trim( ).contains( "1" ) ) {
+      } else if ( resp.trim( ).contains( "0" ) ) {
 
         // Mostrar mensaje.
         Log.i( "verifica1 ", "valido" );

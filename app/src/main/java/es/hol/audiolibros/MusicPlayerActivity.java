@@ -516,7 +516,7 @@ public class MusicPlayerActivity extends Activity implements OnPreparedListener,
    */
   private Runnable mUpdateTimeTask = new Runnable( ) {
     public void run( ) {
-       totalDuration = mp.getDuration( );
+      // totalDuration = mp.getDuration( );
       long currentDuration = mp.getCurrentPosition( );
 
       // Muestra la duracion total
