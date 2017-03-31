@@ -15,6 +15,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -85,6 +86,15 @@ public class Libroviewer extends Activity {
     id = cur.getInt( KEY_ROWID );
 
     cur.close( );
+
+    WindowManager.LayoutParams params = getWindow( ).getAttributes( );
+    //params.x = -5;
+    params.y = 100;
+    params.height = 800;
+    params.width = 500;
+    params.y = -10;
+
+    this.getWindow( ).setAttributes( params );
 
   } // onCreate
 

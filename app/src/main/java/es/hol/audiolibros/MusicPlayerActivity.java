@@ -62,6 +62,9 @@ public class MusicPlayerActivity extends Activity implements OnPreparedListener,
   // almacena la posicion de reproduccion del audiolibro
   private int pos_actual = 0;
 
+  // Duración total mp3.
+  long totalDuration;
+
   @Override
   public void onCreate( Bundle savedInstanceState ) {
     super.onCreate( savedInstanceState );
@@ -109,7 +112,13 @@ public class MusicPlayerActivity extends Activity implements OnPreparedListener,
 
     // Indicamos mediante el método setOnPreparedListener la referencia de la clase
     // que será informada cuando el audio esté preparado.
-    mp.setOnPreparedListener( this );
+    //mp.setOnPreparedListener( this );
+
+    mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+      public void onPrepared(MediaPlayer mp) {
+        totalDuration = Long.parseLong( utils.milliSecondsToTimer(mp.getDuration()) );
+      }
+    });
 
     // Getting all songs list
     //songsList = songManager.getPlayList();
@@ -329,8 +338,8 @@ public class MusicPlayerActivity extends Activity implements OnPreparedListener,
     try {
       mp.reset( );
       mp.setOnErrorListener( this );
-      mp.setOnPreparedListener( this );
       mp.setDataSource( url );
+      mp.setOnPreparedListener( this );
       //Log.d("URL2:",url);
       mp.prepareAsync( );
 
@@ -448,8 +457,8 @@ public class MusicPlayerActivity extends Activity implements OnPreparedListener,
 
 
       // Creamos el dialogo definido y lo mostramos
-      AlertDialog alert = dialogo.create( );
-      alert.show( );
+     /* AlertDialog alert = dialogo.create( );
+      alert.show( );*/
 
     } else { // es un favorito
 
@@ -487,13 +496,11 @@ public class MusicPlayerActivity extends Activity implements OnPreparedListener,
               } );
 
       // Creamos el dialogo definido y lo mostramos
-      AlertDialog alert = dialogo.create( );
-      alert.show( );
+      /*AlertDialog alert = dialogo.create( );
+      alert.show( );*/
 
     }
-
     return false;
-
   }
 
 
@@ -509,7 +516,7 @@ public class MusicPlayerActivity extends Activity implements OnPreparedListener,
    */
   private Runnable mUpdateTimeTask = new Runnable( ) {
     public void run( ) {
-      long totalDuration = mp.getDuration( );
+       totalDuration = mp.getDuration( );
       long currentDuration = mp.getCurrentPosition( );
 
       // Muestra la duracion total
@@ -636,8 +643,5 @@ public class MusicPlayerActivity extends Activity implements OnPreparedListener,
       mp.reset( );
       mp.release( );
     }
-
-
   }
-
 }

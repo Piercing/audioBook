@@ -7,8 +7,9 @@
     <ImageView
         android:id="@+id/gv_image"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"/>
+        android:layout_height="200dp"
+        android:scaleType="centerInside"
+        android:adjustViewBounds="true"/>
 
     <TextView
         android:id="@+id/gv_text"
@@ -17,7 +18,8 @@
         android:layout_gravity="bottom"
         android:background="@color/background_footer"
         android:maxLines="1"
-        android:padding="16dp"
+        android:padding="10dp"
+        android:textSize="11sp"
         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
         android:textColor="@android:color/white"/>
 

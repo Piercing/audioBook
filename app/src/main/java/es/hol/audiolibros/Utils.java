@@ -312,7 +312,7 @@ public class Utils {
   static void mensaje( Context context, String mensa ) {
 
     Toast toast = Toast.makeText( context, mensa, Toast.LENGTH_LONG );
-    toast.setGravity( Gravity.CENTER_VERTICAL, 0, 0 );
+    toast.setGravity( Gravity.BOTTOM, 0, 0 );
     toast.show( );
   }
 

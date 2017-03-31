@@ -16,17 +16,17 @@ import android.util.Log;
 // sentencias SQL como CREATE TABLE.
 // El método onUpgrade() se utiliza para cambiar de versión, y lo normal es realizar un proceso de migración de
 // datos, antes de hacer un DROP TABLE.
-public class DataBase extends SQLiteOpenHelper {
+class DataBase extends SQLiteOpenHelper {
 
   // Definir constantes
-  public static final String KEY_ROWID = "_id";
-  public static final String KEY_TITULO = "titulo";
-  public static final String KEY_AUTOR = "autor";
-  public static final String KEY_TEMA = "tema";
-  public static final String KEY_DESCRIP = "descrip";
-  public static final String KEY_MP3URL = "mp3url";
-  public static final String KEY_POSICION = "posicion";
-  public static final String KEY_IMAGEN = "imagen";
+  private static final String KEY_ROWID = "_id";
+  private static final String KEY_TITULO = "titulo";
+  private static final String KEY_AUTOR = "autor";
+  private static final String KEY_TEMA = "tema";
+  private static final String KEY_DESCRIP = "descrip";
+  private static final String KEY_MP3URL = "mp3url";
+  private static final String KEY_POSICION = "posicion";
+  private static final String KEY_IMAGEN = "imagen";
 
   private static final String TAG = "AdaptadorBD";
 
@@ -53,7 +53,7 @@ public class DataBase extends SQLiteOpenHelper {
   private SQLiteDatabase bsSql;
 
   // Constructor
-  public DataBase( Context context ) {
+  DataBase( Context context ) {
     super( context, DATABASE_NAME, null, DATABASE_VERSION );
   }
 
@@ -104,13 +104,13 @@ public class DataBase extends SQLiteOpenHelper {
     // sentencia INSERT a la BD para insertar una fila con los valores initialValues
     db.insert( DATABASE_TABLE, null, Values );
 
-    //db.close();
+    db.close();
 
   }
 
   //actualiza los datos del libro identificado por numero, con los nuevos valores
 //pasados como parámetros,mediante el método update().
-  public boolean insertaLibro( ContentValues args ) {
+  boolean insertaLibro( ContentValues args ) {
 
     SQLiteDatabase db = this.getWritableDatabase( );
 
@@ -152,7 +152,7 @@ public class DataBase extends SQLiteOpenHelper {
 
   //-- ELIMINAR
 //elimina el libro identificado por numero, mediante el método delete().
-  public boolean borrarLibro( long numero ) {
+  boolean borrarLibro( long numero ) {
 
     SQLiteDatabase db = this.getWritableDatabase( );
 
@@ -170,7 +170,7 @@ public class DataBase extends SQLiteOpenHelper {
   }
 
   //consulta de un libro por 'id' (clave primaria)
-  public Cursor getLibro( int Id ) throws SQLException {
+  Cursor getLibro( int Id ) throws SQLException {
 
     SQLiteDatabase db = this.getReadableDatabase( );
 
@@ -183,7 +183,7 @@ public class DataBase extends SQLiteOpenHelper {
   }
 
   // Obtener cantidad de libros
-  public int getLibrosCount( ) {
+  int getLibrosCount( ) {
 
     String countQuery = "SELECT * FROM " + DATABASE_TABLE;
 
