@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/grey"
     android:orientation="vertical">
 
     <LinearLayout
@@ -23,14 +24,15 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="4dp"
             android:layout_weight="1"
-            android:inputType="textFilter"/>
+            android:inputType="textFilter"
+            android:textColor="@color/white"/>
 
         <ImageButton
             android:id="@+id/ibtn_buscar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.15"
-            android:src="@drawable/ic_buscar24"/>
+            android:src="@drawable/busqueda"/>
 
     </LinearLayout>
 
