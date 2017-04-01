@@ -1,5 +1,6 @@
 package es.hol.audiolibros;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -61,6 +62,10 @@ public class Favoritos extends Activity {
 
     // fijar de manera permanente la orientación en modo vertical
     setRequestedOrientation( ActivityInfo.SCREEN_ORIENTATION_PORTRAIT );
+
+    // Obtener el action Bar para el botón volver.
+    ActionBar actionBar = getActionBar( );
+    actionBar.setDisplayHomeAsUpEnabled( true );
 
     setContentView( R.layout.favoritos );
 
@@ -140,6 +145,18 @@ public class Favoritos extends Activity {
 
     Log.i( "Favoritos pos", String.valueOf( info.position ) );
 
+  }
+
+  /**
+   * Al pulsar botón volver en la status bar, ir a la actividad principal.
+   *
+   * @param item
+   * @return
+   */
+  public boolean onOptionsItemSelected( MenuItem item ) {
+    Intent myIntent = new Intent( getApplicationContext( ), Principal.class );
+    startActivityForResult( myIntent, 0 );
+    return true;
   }
 
 

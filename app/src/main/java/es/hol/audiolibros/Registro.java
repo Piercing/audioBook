@@ -98,7 +98,7 @@ public class Registro extends Activity {
         String correo = mail.getText( ).toString( ).trim( );
 
         //verificamos si no estan en blanco
-        if ( checkregdata( usuario, passw, correo ) == true ) {
+        if ( checkregdata( usuario, passw, correo ) ) {
 
           // ciframos la contraseña aplicandole una máscara (la misma que aplica el WebService)
           String masc = "|#€7`¬23ads4ook12";

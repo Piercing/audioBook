@@ -1,5 +1,6 @@
 package es.hol.audiolibros;
 
+import android.app.ActionBar;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
@@ -19,7 +20,6 @@ import android.view.ContextMenu.ContextMenuInfo;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
@@ -103,8 +103,9 @@ public class Catalogo extends ListActivity {
     // Fijar orientacion vertical
     setRequestedOrientation( ActivityInfo.SCREEN_ORIENTATION_PORTRAIT );
 
-    requestWindowFeature( Window.FEATURE_ACTION_BAR );
-    requestWindowFeature( Window.FEATURE_CONTEXT_MENU );
+    // Obtener el action Bar para el botón volver.
+    ActionBar actionBar = getActionBar( );
+    actionBar.setDisplayHomeAsUpEnabled( true );
 
     setContentView( R.layout.catalogo );
 
@@ -216,6 +217,19 @@ public class Catalogo extends ListActivity {
         finish( );
       }
     }
+  }
+
+  /**
+   * Al pulsar botón volver en la status bar, ir a la actividad principal.
+   *
+   * @param item
+   * @return
+   */
+  public boolean onOptionsItemSelected( MenuItem item ) {
+    Intent myIntent = new Intent( getApplicationContext( ), Principal.class );
+    startActivityForResult( myIntent, 0 );
+    return true;
+
   }
 
   @Override

@@ -1,8 +1,10 @@
 package es.hol.audiolibros;
 
+import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.pm.ActivityInfo;
@@ -10,6 +12,7 @@ import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.WindowManager;
 
 // Las preferencias no son más que datos que una aplicación debe guardar para personalizar la experiencia del usuario,
@@ -37,6 +40,10 @@ public class Configuracion extends PreferenceActivity implements OnSharedPrefere
     // Aparece al tener el foco un EditText
     getWindow( ).setSoftInputMode( WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN );
 
+    // Obtener el action Bar para el botón volver.
+    ActionBar actionBar = getActionBar( );
+    actionBar.setDisplayHomeAsUpEnabled( true );
+
     context = this; //getApplicationContext(); getBaseContext();
     prefs = PreferenceManager.getDefaultSharedPreferences( context );
 
@@ -48,6 +55,18 @@ public class Configuracion extends PreferenceActivity implements OnSharedPrefere
     // llamada al método addPreferencesFromResource(), mediante el que indicaremos el fichero XML
     // en el que hemos definido la pantalla de opciones
     addPreferencesFromResource( R.xml.configuracion );
+  }
+
+  /**
+   * Al pulsar botón volver en la status bar, ir a la actividad principal.
+   *
+   * @param item
+   * @return
+   */
+  public boolean onOptionsItemSelected( MenuItem item ) {
+    Intent myIntent = new Intent( getApplicationContext( ), Principal.class );
+    startActivityForResult( myIntent, 0 );
+    return true;
   }
 
   // Método llamado cada vez que un cambio es confirmado

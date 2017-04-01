@@ -35,7 +35,7 @@
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:background="@drawable/rounded_corner"
         android:padding="8dp"
-        android:scaleType="centerCrop"
+        android:scaleType="centerInside"
         android:src="@drawable/ic_no_imag_128_yellow"/>
 
     <TextView
@@ -61,22 +61,23 @@
 
         <ImageButton
             android:id="@+id/btn_volver"
-            android:layout_width="0dp"
+            android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/rounded_corner"
             android:onClick="Volver"
+            android:scaleType="centerCrop"
             android:src="@drawable/ic_volver"/>
 
         <ImageButton
             android:id="@+id/btn_reproducir"
-            android:layout_width="0dp"
+            android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/rounded_corner"
             android:onClick="play"
+            android:scaleType="centerCrop"
             android:src="@drawable/btn_play"/>
-
 
     </LinearLayout>
 

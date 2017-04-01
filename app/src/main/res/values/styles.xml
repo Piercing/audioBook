@@ -17,25 +17,42 @@
         <item name="android:textSize">11sp</item>
         <item name="android:background">#f9bd4b</item>
         <item name="android:textColor">#3A3B3B</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:layout_marginTop">4dp</item>
     </style>
 
     <style name="PreferenceListHeader" parent="Widget.TextView.ListSeparator">
         <item name="android:textColor">#3A3B3B</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">13sp</item>
+        <item name="android:textSize">12sp</item>
         <item name="android:background">#f9bd4b</item>
-        <item name="android:paddingTop">6dp</item>
-        <item name="android:paddingBottom">6dp</item>
+        <item name="android:paddingTop">3dp</item>
+        <item name="android:paddingBottom">3dp</item>
         <item name="android:paddingLeft">12dp</item>
+        <item name="android:layout_marginTop">12dp</item>
+
     </style>
 
     <style name="PreferenceScreen" >
         <item name="android:listSeparatorTextViewStyle">@style/PreferenceListHeader</item>
         <item name="android:background">@color/grey</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">13sp</item>
         <item name="android:windowActionBar">true</item>
         <item name="android:windowNoTitle">false</item>
+        <item name="android:layout_marginBottom">6dp</item>
+    </style>
+
+    <style name="MyTheme.ActionBarStyle" parent="PreferenceScreen">
+        <item name="android:titleTextStyle">@style/PreferenceScreen</item>
+        <item name="android:background">#2E2E2E</item>
 
     </style>
+
+    <style name="MyTheme.ActionBar.TitleTextStyle" parent="MyTheme.ActionBarStyle">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">#2E2E2E</item>
+
+    </style>
+
 
 </resources>
