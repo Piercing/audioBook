@@ -16,23 +16,32 @@
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
         android:paddingStart="16dp"
+        android:layout_marginBottom="8dp"
         tools:ignore="Suspicious0dp">
 
         <EditText
             android:id="@+id/inputSearch"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="36dp"
             android:layout_marginLeft="4dp"
+            android:layout_marginTop="8dp"
             android:layout_weight="1"
+            android:background="@drawable/rounded_corner3"
+            android:hint="Buscar por..."
             android:inputType="textFilter"
-            android:textColor="@color/white"/>
+            android:textColor="@color/black"
+            android:textColorHint="@color/colorPrimaryDark"
+            android:textSize="15sp"
+            tools:ignore="HardcodedText"/>
 
         <ImageButton
             android:id="@+id/ibtn_buscar"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="36dp"
             android:layout_weight="0.15"
-            android:src="@drawable/busqueda"/>
+            android:layout_marginTop="8dp"
+            android:src="@drawable/busqueda"
+            android:background="@drawable/rounded_corner3"/>
 
     </LinearLayout>
 

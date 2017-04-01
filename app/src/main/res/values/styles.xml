@@ -29,11 +29,12 @@
         <item name="android:paddingLeft">12dp</item>
     </style>
 
-    <style name="PreferenceScreen" parent="android:Theme.NoTitleBar">
+    <style name="PreferenceScreen" >
         <item name="android:listSeparatorTextViewStyle">@style/PreferenceListHeader</item>
         <item name="android:background">@color/grey</item>
-        <item name="android:textSize">15sp</item>
-
+        <item name="android:textSize">14sp</item>
+        <item name="android:windowActionBar">true</item>
+        <item name="android:windowNoTitle">false</item>
 
     </style>
 

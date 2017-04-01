@@ -49,13 +49,17 @@
             android:name=".Registro"
             android:theme="@android:style/Theme.Dialog"/>
 
-        <activity android:name=".Favoritos"/>
+        <activity
+            android:name=".Favoritos"
+            android:theme="@android:style/Theme.Holo.Light.DarkActionBar"/>
 
         <activity
             android:name=".Libroviewer"
             android:theme="@android:style/Theme.Dialog"/>
 
-        <activity android:name=".Catalogo"/>
+        <activity
+            android:name=".Catalogo"
+            android:theme="@android:style/Theme.Holo.Light.DarkActionBar"/>
 
         <activity
             android:name=".AcercaDe"

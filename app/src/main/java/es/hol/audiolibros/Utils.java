@@ -50,7 +50,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
-public class Utils {
+class Utils {
 
 
   /**
@@ -58,7 +58,7 @@ public class Utils {
    * al formato de tiempo
    * HH:MM:SS
    */
-  public String milliSecondsToTimer( long milliseconds ) {
+  String milliSecondsToTimer( long milliseconds ) {
     String finalTimerString = "";
     String secondsString = "";
 

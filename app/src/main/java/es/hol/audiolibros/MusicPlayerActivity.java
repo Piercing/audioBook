@@ -100,7 +100,6 @@ public class MusicPlayerActivity extends Activity implements OnPreparedListener,
     // songManager = new SongsManager();
     utils = new Utils( );
 
-
     // Escuchadores / Listeners
     // Indicamos mediante el método setOnSeekBarChangeListener la referencia de la clase
     // que será informada cuando cambie la barra de progreso.
@@ -122,8 +121,8 @@ public class MusicPlayerActivity extends Activity implements OnPreparedListener,
     // By default play first song
     //git splaySong(0);
 
-    // inicializamos llamando al método getExtras() de la clase Intent (para recuperar el o los parámetros
-    // que envió la otra actividad
+    // inicializamos llamando al método getExtras() de la clase Intent
+    // para recuperar el o los parámetros que envió la otra actividad.
     bundle = getIntent( ).getExtras( );
 
     if ( bundle.getString( "desde" ).contains( "favoritos" ) ) {
@@ -372,7 +371,6 @@ public class MusicPlayerActivity extends Activity implements OnPreparedListener,
     // eliminar diálogo de progreso
     pDialog.dismiss( );
 
-
     // Obtener el titulo + autor pasado por el Intent
     // Alargamos la cadena para poder hacer scroll
     String cancion = bundle.getString( "titulo_autor" );
@@ -415,7 +413,6 @@ public class MusicPlayerActivity extends Activity implements OnPreparedListener,
 
   public boolean onError( MediaPlayer arg0, int arg1, int arg2 ) {
 
-
     // eliminar diálogo de progreso
     if ( pDialog.isShowing( ) )
       pDialog.dismiss( );
@@ -434,8 +431,7 @@ public class MusicPlayerActivity extends Activity implements OnPreparedListener,
     if ( desde.equals( "catalogo" ) ) {
       // Creamos un objeto de la clase AlertDialog a través de la clase Builder
       // Configuramos el mensaje y título del diálogo
-      // Evitamos que el diálogo sea saltado por cualquier medio distinto a presionar alguno de los dos
-      // botones
+      // Evitamos que el diálogo sea saltado por cualquier medio distinto a presionar alguno de los dos botones
       // Llamamos al método setPositiveButton y setNegativeButton indicando el texto a mostrar en el botón // y la clase
       // anónima que capturará el evento clic del botón
 
@@ -585,7 +581,6 @@ public class MusicPlayerActivity extends Activity implements OnPreparedListener,
     // asignar valores a barra de progreso
     songProgressBar.setProgress( 0 );
 
-
     // Actualizar barra de progreso
     updateProgressBar( );
 
@@ -601,8 +596,8 @@ public class MusicPlayerActivity extends Activity implements OnPreparedListener,
     // Asignar objetos
     DataBase db; // Clase SQLiteOpenHelper
     SQLiteDatabase bsSql; // Clase para manipular los datos
-
     db = new DataBase( getApplicationContext( ) );
+
     // Abre una conexion a la BD para lectura
     bsSql = db.getWritableDatabase( );
 

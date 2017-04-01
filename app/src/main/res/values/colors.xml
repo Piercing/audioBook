@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#f9bd4b</color>
-    <color name="colorPrimaryDark">#3A3B3B</color>
+    <color name="colorPrimaryDark">#3a3b3b</color>
     <color name="colorAccent">#80CBC4</color>
 
     <!--<color name="darkPrimaryColor">#7B1FA2</color>
@@ -9,7 +9,7 @@
     <color name="accentColor">#00BCD4</color>-->
 
     <color name="backgroundColor">#ffffff</color>
-    <color name="background_footer">#3A3B3B</color>
+    <color name="background_footer">#3a3b3b</color>
     <color name="grey">#3A3B3B</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>

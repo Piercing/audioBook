@@ -19,6 +19,7 @@ import android.view.ContextMenu.ContextMenuInfo;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
@@ -45,7 +46,8 @@ import java.util.HashMap;
 
 public class Catalogo extends ListActivity {
 
-  // Definir constantes
+  /*  Definir constantes. */
+
   private static final String TAG_ID = "id";
   private static final String TAG_AUTOR = "autor";
   private static final String TAG_TITULO = "titulo";
@@ -61,12 +63,12 @@ public class Catalogo extends ListActivity {
   public static final String KEY_POSICION = "posicion";
   public static final String KEY_IMAGEN = "imagen";
 
-// Variables de uso general
+  /* Variables globlales. */
 
-  // Un mapa es una estructura que nos permite almacenar pares clave/valor.
-  // De tal manera que para una clave solamente tenemos un valor.
-  ArrayList<HashMap<String, String>> jsonlist = new ArrayList<HashMap<String, String>>( );
-  ArrayList<HashMap<String, String>> array_sort = new ArrayList<HashMap<String, String>>( );
+  // Un mapa: estructura que nos permite almacenar pares clave/valor.
+  // De tal manera que para una 'clave' solamente tenemos un 'valor'.
+  ArrayList<HashMap<String, String>> jsonlist = new ArrayList<>( );
+  ArrayList<HashMap<String, String>> array_sort = new ArrayList<>( );
 
   ListAdapter adapter;
   ListView lv;
@@ -101,6 +103,9 @@ public class Catalogo extends ListActivity {
     // Fijar orientacion vertical
     setRequestedOrientation( ActivityInfo.SCREEN_ORIENTATION_PORTRAIT );
 
+    requestWindowFeature( Window.FEATURE_ACTION_BAR );
+    requestWindowFeature( Window.FEATURE_CONTEXT_MENU );
+
     setContentView( R.layout.catalogo );
 
     // Obtenemos las referencias a los controles
@@ -110,8 +115,7 @@ public class Catalogo extends ListActivity {
 
     // Ocultamos el teclado virtual
     // Aparece al tener el foco un EditText
-    getWindow( ).setSoftInputMode( WindowManager.LayoutParams.
-        SOFT_INPUT_STATE_ALWAYS_HIDDEN );
+    getWindow( ).setSoftInputMode( WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN );
 
     // Asociamos el menú contextual al control para el listview y el boton de busqueda
     registerForContextMenu( this.getListView( ) );
@@ -433,7 +437,7 @@ public class Catalogo extends ListActivity {
 
       Log.i( "onPostExecute=", "resp: " + resp );
 
-      //validamos el resultado obtenido
+      // validamos el resultado obtenido
       if ( resp.trim( ).contains( "0" ) ) {
 
         // Mostrar mensaje
@@ -473,7 +477,6 @@ public class Catalogo extends ListActivity {
 
     } // Onpostexecute
 
-
   } // verificaUsuario
 
 
@@ -493,7 +496,7 @@ public class Catalogo extends ListActivity {
     Log.i( "Catalogo", "url: " + url );
     Log.i( "Catalogo", "code: " + result[ 0 ] );
 
-    if ( result[ 0 ] != 0 && result[ 0 ] != 200) {
+    if ( result[ 0 ] != 0 && result[ 0 ] != 200 ) {
       // No existe imagen, descargar generica
       url = "http://" + server.trim( ) + "/libros/fotolibro/" + "0-gra.jpg";
 
@@ -505,7 +508,7 @@ public class Catalogo extends ListActivity {
     }
 
     // Si es correcto
-    if ( result[ 0 ] == 0 || result[ 0 ] == 200) {
+    if ( result[ 0 ] == 0 || result[ 0 ] == 200 ) {
 
       String Titulo, Autor, Tema, Descrip, Mp3url;
       Bitmap Imagen = Utils.DownloadImage.downloadImage( url );
