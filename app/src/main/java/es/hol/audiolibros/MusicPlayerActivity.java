@@ -110,10 +110,6 @@ public class MusicPlayerActivity extends Activity implements OnPreparedListener,
     // que será informada cuando el audio finalice.
     mp.setOnCompletionListener( this );
 
-    // Indicamos mediante el método setOnPreparedListener la referencia de la clase
-    // que será informada cuando el audio esté preparado.
-    //mp.setOnPreparedListener( this );
-
     mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
       public void onPrepared(MediaPlayer mp) {
         totalDuration = Long.parseLong( utils.milliSecondsToTimer(mp.getDuration()) );
@@ -124,7 +120,7 @@ public class MusicPlayerActivity extends Activity implements OnPreparedListener,
     //songsList = songManager.getPlayList();
 
     // By default play first song
-    //playSong(0);
+    //git splaySong(0);
 
     // inicializamos llamando al método getExtras() de la clase Intent (para recuperar el o los parámetros
     // que envió la otra actividad

@@ -33,24 +33,29 @@
         android:layout_gravity="center"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:background="@drawable/rounded_corner"
+        android:padding="8dp"
+        android:scaleType="centerCrop"
         android:src="@drawable/ic_no_imag_128_yellow"/>
 
     <TextView
         android:id="@+id/txt_des"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="140dp"
         android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:background="@drawable/rounded_corner3"
         android:inputType="textMultiLine"
-        android:textSize="15sp"
         android:scrollbars="vertical"
         android:text="@string/descripcion_book"
-        android:textColor="@color/white"/>
+        android:textColor="@color/black"
+        android:textSize="13sp"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/xmargin_btn"
+        android:layout_marginBottom="6dp"
+        android:layout_marginTop="16dp"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -59,14 +64,16 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/ic_volver"
-            android:onClick="Volver"/>
+            android:background="@drawable/rounded_corner"
+            android:onClick="Volver"
+            android:src="@drawable/ic_volver"/>
 
         <ImageButton
             android:id="@+id/btn_reproducir"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/rounded_corner"
             android:onClick="play"
             android:src="@drawable/btn_play"/>
 

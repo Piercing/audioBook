@@ -111,7 +111,7 @@ public class Utils {
    */
   public int progressToTimer( int progress, int totalDuration ) {
     int currentDuration = 0;
-    totalDuration = ( int ) ( totalDuration / 1000 );
+    totalDuration = totalDuration / 1000;
     currentDuration = ( int ) ( ( ( ( double ) progress ) / 100 ) * totalDuration );
 
     // devolver la duracion actual en milisegundos
@@ -340,8 +340,8 @@ public class Utils {
 
     try {
 
-      disableConnectionReuseIfNecessary( );
-      System.setProperty( "http.keepAlive", "false" );
+      /*disableConnectionReuseIfNecessary( );
+      System.setProperty( "http.keepAlive", "false" );*/
 
       //desactivar redirecciones
       HttpURLConnection.setFollowRedirects( false );
@@ -768,7 +768,7 @@ public class Utils {
   // En esta clase lo que hacemos es implementar la comunicación, aqui estas todo lo que se necesita
   // para enviar la petición a PHP junto con información.
 
-  public static class httpHandler {
+  static class httpHandler {
 
     String post( String posturl, ArrayList<NameValuePair> params ) {
 
@@ -797,7 +797,6 @@ public class Utils {
         is = ent.getContent( );
 
         //String valor = EntityUtils.toString(resp.getEntity(), HTTP.UTF_8);
-
         //Log.i("Handler: ", "Valor: " + valor);
 
         if ( is != null ) {
@@ -809,7 +808,7 @@ public class Utils {
 
             String line = null;
             while ( ( line = reader.readLine( ) ) != null ) {
-              sb.append( line + "\n" );
+              sb.append( line ).append( "\n" );
             }
 
             is.close( );

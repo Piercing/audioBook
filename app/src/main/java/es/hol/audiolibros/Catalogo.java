@@ -211,11 +211,8 @@ public class Catalogo extends ListActivity {
 
         finish( );
       }
-
     }
-
   }
-
 
   @Override
   public boolean onContextItemSelected( MenuItem item ) {
@@ -285,7 +282,7 @@ public class Catalogo extends ListActivity {
         // comprobar url
         result = Utils.CompruebaUrl( getApplicationContext( ), mp3url );
 
-        if ( result[ 0 ] == 200 || result[0] != 200 ) {
+        if ( result[ 0 ] == 200 || result[ 0 ] != 200 ) {
 
           reproducir = true;
           favoritos = false;
@@ -411,7 +408,6 @@ public class Catalogo extends ListActivity {
 
     }
 
-
     protected String doInBackground( Void... params ) {
 
       String url = datos.get( 2 ).getValue( ).trim( );
@@ -424,7 +420,6 @@ public class Catalogo extends ListActivity {
       String resp = handler.post( url, datos );
 
       Log.i( "VericaUsuario", "resp: " + resp + "url: " + url );
-
 
       // valor devuelto para onPostExecute
       return resp;
@@ -453,6 +448,7 @@ public class Catalogo extends ListActivity {
         if ( favoritos ) {
           int pos = Integer.parseInt( datos.get( 3 ).getValue( ).trim( ) );
           agregar_favorito( _ID, pos );
+
         } else if ( reproducir ) {
           // Crear un Intent, pasar parametros y lanzar una nueva Activity con el reproductor
           Intent i = new Intent( getApplicationContext( ), MusicPlayerActivity.class );
@@ -497,19 +493,19 @@ public class Catalogo extends ListActivity {
     Log.i( "Catalogo", "url: " + url );
     Log.i( "Catalogo", "code: " + result[ 0 ] );
 
-    if ( result[ 0 ] != 0 ) {
+    if ( result[ 0 ] != 0 && result[ 0 ] != 200) {
       // No existe imagen, descargar generica
       url = "http://" + server.trim( ) + "/libros/fotolibro/" + "0-gra.jpg";
 
       // forzar result
-      result[ 0 ] = 0;
+      result[ 0 ] = 200;
 
       Log.i( "Catalogo1", "url: " + url );
       Log.i( "Catalogo1", "code: " + result[ 0 ] ); //String.valueOf(result[0]));
     }
 
     // Si es correcto
-    if ( result[ 0 ] == 0 ) {
+    if ( result[ 0 ] == 0 || result[ 0 ] == 200) {
 
       String Titulo, Autor, Tema, Descrip, Mp3url;
       Bitmap Imagen = Utils.DownloadImage.downloadImage( url );
@@ -538,7 +534,6 @@ public class Catalogo extends ListActivity {
       }
 
       // Crear un nuevo FileOutputStream y escribir los bytes en un fichero
-
       try {
         fos = new FileOutputStream( file );
         fos.write( bytes.toByteArray( ) );
@@ -549,7 +544,7 @@ public class Catalogo extends ListActivity {
       }
 
       if ( Imagen != null ) {
-        // convert bitmap to byte and compres
+        // Elegimos el formato de compresion y calidad
         ByteArrayOutputStream stream = new ByteArrayOutputStream( );
         Imagen.compress( Bitmap.CompressFormat.JPEG, 50, stream );
         imageInByte = stream.toByteArray( );
@@ -560,7 +555,7 @@ public class Catalogo extends ListActivity {
       // ruta de la función del Web Service
       url = "http://" + server + "/WebService/db_descrip.php";
 
-      //Rellenar datos paara consulta
+      // Rellenar datos para consulta
       datos.clear( );
       //datos = new ArrayList<NameValuePair>();
       datos.add( new BasicNameValuePair( "_id", String.valueOf( id ) ) );
@@ -646,13 +641,11 @@ public class Catalogo extends ListActivity {
 
         break;
     } // switch
-
   }
 
-
   public void filtrado( String valor ) {
-    // Obtener los datos filtrados por valor
 
+    // Obtener los datos filtrados por valor
     int textlength = 0;
 
     textlength = inputSearch.getText( ).length( );
@@ -687,7 +680,7 @@ public class Catalogo extends ListActivity {
     private ListActivity activity;
     private Context context;
 
-    public CargaCatalogo( ListActivity activity ) {
+    CargaCatalogo( ListActivity activity ) {
       this.activity = activity;
       context = activity;
       dialog = new ProgressDialog( context );
@@ -715,7 +708,6 @@ public class Catalogo extends ListActivity {
       // Si catalogo = true es que tenemos descargado el fichero en el movil
       // si false tenemos que descargarlo
       if ( !catalogo ) {
-
         result = Utils.CompruebaUrl( getBaseContext( ), url );
 
         // Si es correcto
@@ -735,17 +727,17 @@ public class Catalogo extends ListActivity {
 
           if ( file.exists( ) ) {
             Log.d( "File", "Existe" );
-            // Actualizar preferencias
-            //Obtenemos el editor de las preferencias.
+
+            // Actualizar preferencias. Obtenemos el editor de las preferencias.
             SharedPreferences.Editor editor = prefs.edit( );
 
-            // almacenar un booleano CATALOGO con valor true.
-            // y un int con el tamaño del catalogo
+            // almacenar un booleano CATALOGO con valor
+            // true y un int con el tamaño del catalogo
             editor.putBoolean( "CATALOGO", true );
             editor.putInt( "TAMANO", result[ 1 ] );
 
-            // Tras haber indicado los cambios a realizar (en nuestro caso dos),
-            // le indicamos al editor que los almacene en las preferencias.
+            // Tras haber indicado los cambios a realizar (en este caso dos),
+            // le indicamos al editor que los almacene en las 'preferencias'.
             editor.apply( );
           }
         }
@@ -762,6 +754,7 @@ public class Catalogo extends ListActivity {
 
       // Obtener los datos del archivo json y crear la lista
       JSONParser jParser = new JSONParser( );
+
       // Obtener el archivo .json y asignarlo al objeto array
       //JSONArray json = jParser.getJSONFromUrl(url);
 
@@ -781,7 +774,8 @@ public class Catalogo extends ListActivity {
           String vtitulo = c.getString( TAG_TITULO );
           String vtema = c.getString( TAG_TEMA );
           String vurl = c.getString( TAG_URL );
-          HashMap<String, String> map = new HashMap<String, String>( );
+          HashMap<String, String> map = new HashMap<>( );
+
           // añadimos cada nodo al HashMap clave => valor
           map.put( TAG_ID, vid );
           map.put( TAG_AUTOR, vautor );
@@ -809,18 +803,16 @@ public class Catalogo extends ListActivity {
       // Si no existen datos mostrar mensaje y salir
       int tam = jsonlist.size( );
       if ( tam == 0 ) {
-        // No hay conexion a Internet
-        // Mostrar dialogo
+        // No hay conexion a Internet. Mostrar dialogo
         //Utilities.showAlertDialog(Catalogo.this, "Internet","No existe Catálogo o no hay conexión", false);
 
         Utils.mensaje( getApplicationContext( ), " No existe Catálogo o no hay conexión " );
 
         try {
-          Thread.sleep( 2000 );
+          Thread.sleep( 1000 );
         } catch ( InterruptedException ex ) {
           Thread.currentThread( ).interrupt( );
         }
-
         finish( );
       }
 
@@ -828,18 +820,14 @@ public class Catalogo extends ListActivity {
       ListAdapter adapter = new SimpleAdapter( context, jsonlist, R.layout.list_item,
           new String[]{ TAG_AUTOR, TAG_TITULO, TAG_TEMA, TAG_URL },
           new int[]{ R.id.autor, R.id.titulo, R.id.tema, R.id.url } );
+
       setListAdapter( adapter );
       lv = getListView( );
-
     }
-
-
   }
 
   @Override
   public void onDestroy( ) {
     super.onDestroy( );
-
   }
-
 }
