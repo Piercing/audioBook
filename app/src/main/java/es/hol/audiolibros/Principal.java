@@ -136,7 +136,7 @@ public class Principal extends AppCompatActivity {
     } catch ( Exception ignored ) {
     }
 
-  } // onCreate
+  } // onCreate.
 
 // ***************************** F A V O R I T O S ***************************** //
 
