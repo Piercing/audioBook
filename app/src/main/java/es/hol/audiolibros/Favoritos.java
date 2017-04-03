@@ -5,12 +5,10 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Base64;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -184,80 +182,6 @@ public class Favoritos extends Activity {
 
             // Mensaje al usuario.
             Utils.mensaje( getApplicationContext( ), "\nLibro eliminado de favoritos.\n" );
-
-            return true;
-
-         case R.id.CtxGvOpc2: // Reproducir.
-
-            // Obtiene el objeto de preferencias de la aplicacion.
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences( Favoritos.this );
-
-            // Obtener datos desde preferencias.
-            String usuario = prefs.getString( "user", "" );
-            String clave = prefs.getString( "pass", "" );
-            String server = prefs.getString( "server", "www.audiobooks.hol.es" );
-            boolean registrado = prefs.getBoolean( "REGISTRO", false );
-
-            // Comprobar conexion.
-            if ( !Utils.verificaConexion( this ) ) {
-
-               // No hay conexion a Internet => mostrar dialogo.
-               Utils.showAlertDialog( Favoritos.this, "Internet", "Comprueba tu conexión", false );
-
-               return true;
-            }
-
-            // Obtener datos necesarios de la BD.
-            cur = obtieneCursor( _ID );
-            mp3url = cur.getString( KEY_MP3URL );
-            titulo = cur.getString( KEY_TITULO ).trim( ) + " - " + cur.getString( KEY_AUTOR ).trim( );
-            pos = cur.getInt( KEY_POSICION );
-            id = cur.getInt( KEY_ROWID );
-            imageInByte = cur.getBlob( KEY_IMAGEN );
-            cur.close( );
-
-            // LOGS.
-            Log.i( "Favoritos play", mp3url );
-            Log.i( "Favoritos play", titulo );
-
-            // Algunas url contienen espacios y darían error.
-            mp3url = mp3url.replaceAll( "\\s", "%20" );
-
-            // Comprobar que existe la url.
-            int[] result = Utils.CompruebaUrl( getBaseContext( ), mp3url );
-
-            // Si el server nos devuelve un 200 como respuesta, es que ha ido bien.
-            if ( result[ 0 ] == 200 ) {
-
-               // Si hay datos de registro verificar con el WebService.
-               if ( registrado ) {
-
-                  // Contiene datos de registro.
-                  ArrayList<NameValuePair> datos;
-
-                  // Ruta de la función del Web Service
-                  String url = "http://" + server + "/valida_User.php";
-
-                  // Rellenar datos de registro.
-                  datos = new ArrayList<>( );
-                  datos.add( new BasicNameValuePair( "usuario", usuario ) );
-                  datos.add( new BasicNameValuePair( "password", clave ) );
-                  datos.add( new BasicNameValuePair( "url", url ) );
-
-                  // Ejecutar tarea asincrona de validar usuario.
-                  verificaUsuario validar = new verificaUsuario( this, datos );
-                  validar.execute( );
-
-                  // Si no hay registro mostrar aviso.
-               } else {
-
-                  // Mostrar dialogo.
-                  Utils.showAlertDialog( Favoritos.this, "AVISO", "\nNo hay datos de registro.\nDebe registrarse.", false );
-               }
-
-            } else {
-               Utils.mensaje( getApplicationContext( ), "Code: " + result[ 0 ] + "\nNo se encontró el audiolibro o " + "\nno hay conexión." );
-            }
 
             return true;
 

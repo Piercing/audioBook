@@ -107,13 +107,11 @@ public class Catalogo extends ListActivity {
 
       setContentView( R.layout.catalogo );
 
-      // Ocultamos el teclado virtual. Aparece al tener el foco un EditText.
       inputSearch = ( EditText ) findViewById( R.id.inputSearch );
       lv = ( ListView ) findViewById( android.R.id.list );
       buscar = ( ImageButton ) findViewById( R.id.ibtn_buscar );
 
-      // Ocultamos el teclado virtual
-      // Aparece al tener el foco un EditText
+      // Ocultamos el teclado virtual. Aparece al tener el foco en un EditText.
       getWindow( ).setSoftInputMode( WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN );
 
       // Asociamos el menú contextual al control
@@ -364,7 +362,7 @@ public class Catalogo extends ListActivity {
     * En nuestra tarea no necesitamos entrada, no usaremos
     * información de  progreso y devolveremos un  "String".
     */
-   private class verificaUsuario extends AsyncTask<Void, Void, String> {
+   public class verificaUsuario extends AsyncTask<Void, Void, String> {
 
       ProgressDialog Dialog;
       String cpass;

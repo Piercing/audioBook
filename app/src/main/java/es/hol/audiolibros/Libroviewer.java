@@ -27,7 +27,7 @@ import java.util.ArrayList;
 
 public class Libroviewer extends Activity {
 
-   // Constantes globales.
+   /*  Constantes globales. */
    public static final int KEY_ROWID = 0;
    public static final int KEY_TITULO = 1;
    public static final int KEY_AUTOR = 2;
@@ -128,13 +128,13 @@ public class Libroviewer extends Activity {
       // Obtener datos desde preferencias.
       String usuario = prefs.getString( "user", "" );
       String clave = prefs.getString( "pass", "" );
-      String server = prefs.getString( "server", "http://jclibros.azurewebsites.net" );
+      String server = prefs.getString( "server", "www.audiobooks.hol.es" );
       boolean registrado = prefs.getBoolean( "REGISTRO", false );
 
-      // Comprobar conexion.
+      // Comprobar conexión.
       if ( !Utils.verificaConexion( this ) ) {
 
-         // No hay conexión a Internet. Mostrar diálogo
+         // No hay conexión a Internet. Mostrar diálogo.
          Utils.showAlertDialog( Libroviewer.this, "Internet", "Comprueba tu conexión", false );
 
          return;
@@ -148,36 +148,25 @@ public class Libroviewer extends Activity {
       // Comprobar que existe la url.
       int[] result = Utils.CompruebaUrl( getBaseContext( ), mp3url );
 
-      if ( result[ 0 ] == 200 ) {
+      if ( result[ 0 ] == 200 || result[ 0 ] == 0 ) {
          //toast = Toast.makeText(getApplicationContext(),
          // "Existe: "+mp3url, Toast.LENGTH_LONG);
          // toast.setGravity(Gravity.TOP, 25, 300);
          // toast.show();
 
-         // Si hay datos de registro verificar con el WebService.
-         if ( registrado ) {
+         // Crear un Intent, pasar parámetros y lanzar una nueva Activity con el reproductor.
+         Intent i = new Intent( getApplicationContext( ), MusicPlayerActivity.class );
 
-            // Contiene datos de registro.
-            ArrayList<NameValuePair> datos;
+         // Llamamos al método 'putExtra' de la clase 'Intent'. Tiene dos parámetros de tipo 'String'
+         // clave-valor, en el primero indicamos el nombre del dato y en el segundo el valor del dato:
+         i.putExtra( "titulo_autor", titulo );
+         i.putExtra( "url", mp3url );
+         i.putExtra( "pos", String.valueOf( pos ) );
+         i.putExtra( "id", String.valueOf( id ) );
+         i.putExtra( "img", Base64.encodeToString( bb, Base64.DEFAULT ) );
+         i.putExtra( "desde", "favoritos" );
 
-            // Ruta de la función del Web Service.
-            String url = "http://" + server + "/valida_User.php";
-
-            // Rellenar datos de registro.
-            datos = new ArrayList<NameValuePair>( );
-            datos.add( new BasicNameValuePair( "usuario", usuario ) );
-            datos.add( new BasicNameValuePair( "password", clave ) );
-            datos.add( new BasicNameValuePair( "url", url ) );
-
-            // Ejecutar tarea asincrona de validar usuario.
-            verificaUsuario validar = new verificaUsuario( this, datos );
-            validar.execute( );
-
-         } else { /* Si no hay registro mostrar aviso. */
-
-            // Mostrar diálogo.
-            Utils.showAlertDialog( Libroviewer.this, "AVISO", "\nNo hay datos de registro.\nDebe registrarse.", false );
-         }
+         startActivity( i );
 
       } else {
          Utils.mensaje( getApplicationContext( ), "Code: " + result[ 0 ] + "\nNo se encontró el audiolibro o\nno hay conexión." );
@@ -216,9 +205,9 @@ public class Libroviewer extends Activity {
 
          // Ciframos la contraseña aplicándole una máscara (la misma que aplica el WebService).
          String masc = "|#€7`¬23ads4ook12";
-         //cpass = masc + Utils.Cifrado.cifrar( datos.get( 1 ).getValue( ).trim( ), "MD5" );
+         cpass = masc + Utils.Cifrado.cifrar( datos.get( 1 ).getValue( ).trim( ), "MD5" );
          cpass = datos.get( 1 ).getValue( ).trim( );
-         //cpass = Utils.Cifrado.cifrar( cpass, "SHA-1" );
+         cpass = Utils.Cifrado.cifrar( cpass, "SHA-1" );
          datos.set( 1, new BasicNameValuePair( "password", cpass ) );
 
          Log.i( "VerificaUsuario", "onPre cclave: " + datos.get( 1 ).getValue( ).trim( ) );

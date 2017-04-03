@@ -8,9 +8,7 @@
     <item
         android:id="@+id/CtxGvOpc1"
         android:title="@string/eliminar"/>
-    <item
-        android:id="@+id/CtxGvOpc2"
-        android:title="@string/reproducir"/>
+
     <item
         android:id="@+id/CtxGvOpc3"
         android:title="@string/salir"/>

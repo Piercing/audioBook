@@ -17,6 +17,7 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.AttributeSet;
+import android.util.Base64;
 import android.util.Log;
 import android.view.InflateException;
 import android.view.LayoutInflater;
@@ -32,6 +33,7 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
@@ -489,15 +491,15 @@ public class Principal extends AppCompatActivity {
 
       // Ciframos la contraseña aplicándole una máscara (la misma que aplica el WebService).
       String masc = "|#€7`¬23ads4ook12";
-      //cpass = masc + Utils.Cifrado.cifrar( datos.get( 1 ).getValue( ).trim( ), "MD5" );
+      cpass = masc + Utils.Cifrado.cifrar( datos.get( 1 ).getValue( ).trim( ), "MD5" );
       cpass = datos.get( 1 ).getValue( ).trim( );
-      //cpass = Utils.Cifrado.cifrar( cpass, "SHA-1" );
+      cpass = Utils.Cifrado.cifrar( cpass, "SHA-1" );
       datos.set( 1, new BasicNameValuePair( "password", cpass ) );
 
       Log.i( "VerificaUsuario", "onPre cclave: " + datos.get( 1 ).getValue( ).trim( ) );
 
       // Codificar en base64.
-      /*byte[] byteArray;
+      byte[] byteArray;
       try {
         byteArray = datos.get( 0 ).getValue( ).trim( ).getBytes( "UTF-8" );
         datos.set( 0, new BasicNameValuePair( "usuario", Base64.encodeToString( byteArray, Base64.DEFAULT ) ) );
@@ -508,7 +510,7 @@ public class Principal extends AppCompatActivity {
       } catch ( UnsupportedEncodingException e ) {
         Log.i( "VerificaUsuario", "Error: " + e );
         //e.printStackTrace();
-      }*/
+      }
 
       Log.i( "VerificaUsuario", "onPre b64clave: " + datos.get( 1 ).getValue( ).trim( ) );
     }
